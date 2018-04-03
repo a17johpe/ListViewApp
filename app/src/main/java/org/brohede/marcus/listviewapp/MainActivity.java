@@ -2,6 +2,8 @@ package org.brohede.marcus.listviewapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -53,11 +55,20 @@ public class MainActivity extends AppCompatActivity {
         // 4. Find the ListView layout element "my_listview" and create an object instance
         // 5. Connect the ArrayAdapter from step 3 with ListView object created in step 4
         ListView myListView = (ListView)findViewById(R.id.my_listview);
+        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String str = "Name: " + mountainNames[position] + "\n" + "Position: " + mountainLocations[position] + "\n" + "Height: " + mountainHeights[position];
+                Toast.makeText(getApplicationContext(), str, Toast.LENGTH_LONG).show();
+            }
+        });
         myListView.setAdapter(adapter);
 
         // 6. Style the ListView items according to Material Design
         //    See: https://material.io/guidelines/components/lists.html#lists-specs
         //    Look for "singel line specs" for "text only" lists and modify the list_item_textview
         //    accordingly
+
+
     }
 }
